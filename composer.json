@@ -20,7 +20,7 @@
     },
     "autoload": {
         "psr-4": {
-        	"conquer\\modal-form\\": ""
+        	"conquer\\modal\\": ""
         }
     },
     "extra": {
