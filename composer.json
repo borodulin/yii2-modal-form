@@ -1,0 +1,31 @@
+{
+    "name": "conquer/modal",
+    "description": "Extension for the Yii2 framework",
+    "keywords": ["yii2", "modal", "ajax", "form"],
+    "homepage": "https://github.com/borodulin/yii2-modal-form",
+    "type": "yii2-extension",
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/borodulin/yii2-modal-form/issues",
+        "source": "https://github.com/borodulin/yii2-modal-form"
+    },
+    "authors": [
+        {
+            "name": "Andrey Borodulin",
+            "email": "borodulin@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": ">=2.0.4"
+    },
+    "autoload": {
+        "psr-4": {
+        	"conquer\\modal-form\\": ""
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.0-dev"
+        }
+    }
+}
