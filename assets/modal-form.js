@@ -48,7 +48,7 @@
             var $modalDialog = $(settings.modal).attr('id',
                     'modalFormId-' + ++idCounter);
             if (settings.size) {
-                $modalDialog.addClass(settings.size);
+                $modalDialog.find('.modal-dialog').addClass(settings.size);
             }
             $('body').append($modalDialog);
             var $content = $modalDialog.find('.modal-content');
