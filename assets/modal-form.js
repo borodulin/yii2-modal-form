@@ -42,10 +42,14 @@
                 }
             }));
         };
-        var createModalDialog = function(options) {
-            var settings = $.extend({}, self.defaultOptions, options);
+        
+        var createModalDialog = function(dataOptions) {
+            var settings = $.extend({}, self.defaultOptions, options, dataOptions);
             var $modalDialog = $(settings.modal).attr('id',
                     'modalFormId-' + ++idCounter);
+            if (settings.size) {
+                $modalDialog.addClass(settings.size);
+            }
             $('body').append($modalDialog);
             var $content = $modalDialog.find('.modal-content');
             $modalDialog.loading = function() {

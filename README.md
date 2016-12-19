@@ -3,7 +3,7 @@ Yii2 Ajax modal form
 
 ## Description
 
-This extension allows you to quickly implement full-featured modal forms in yii.
+This extension allows you to quickly add full-featured modal forms to your appllication.
 
 ## Installation
 
