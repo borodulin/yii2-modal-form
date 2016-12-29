@@ -1,9 +1,9 @@
 <?php
 /**
  * @link https://github.com/borodulin/yii2-modal-form
- * @copyright Copyright (c) 2015 Andrey Borodulin
- * @license https://github.com/borodulin/yii2-modal-form/blob/master/LICENSE
- */
+* @copyright Copyright (c) 2015 Andrey Borodulin
+* @license https://github.com/borodulin/yii2-modal-form/blob/master/LICENSE
+*/
 namespace conquer\modal;
 
 use yii\base\Widget;
@@ -24,6 +24,8 @@ class ModalForm extends Widget
 
     public $selector = '.modal-form';
 
+    public $single = true;
+
     public $options;
 
     public function init()
@@ -33,7 +35,9 @@ class ModalForm extends Widget
         }
         $this->options = ArrayHelper::merge([
             'size' => $this->size,
-            'loginUrl' => $this->loginUrl
+            'loginUrl' => $this->loginUrl,
+            'selector' => $this->selector,
+            'single' => $this->single,
         ], (array) $this->options);
         ModalFormAsset::register($this->view);
     }
@@ -41,6 +45,6 @@ class ModalForm extends Widget
     public function run()
     {
         $options = json_encode($this->options);
-        $this->view->registerJs("$('{$this->selector}').modalForm($options);");
+        $this->view->registerJs("$.modalForm($options);");
     }
 }

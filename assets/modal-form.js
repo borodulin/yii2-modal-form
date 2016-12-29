@@ -8,10 +8,12 @@
     $.ajaxPrefilter(function(options, originalOptions, jqXHR) {
         options.async = true;
     });
-    $.fn.modalForm = function(options) {
+    var idCounter = 0; 
+    $.modalForm = function(options) {
         var self = this;
-        var idCounter = 0;
         this.defaultOptions = {
+            selector: '.modal-form',
+            single: true,
             size : null,
             loginUrl : null,
             loading : '<div class="modal-header">Loading...</div>'
@@ -25,6 +27,8 @@
             error : '<div class="error-summary"></div>'
         };
 
+        var settings = $.extend({}, self.defaultOptions, options);
+        
         var ajaxContent = function(ajax, $modalDialog) {
             $modalDialog.modal('show').loading();
             $.ajax($.extend(ajax, {
@@ -44,11 +48,11 @@
         };
         
         var createModalDialog = function(dataOptions) {
-            var settings = $.extend({}, self.defaultOptions, options, dataOptions);
-            var $modalDialog = $(settings.modal).attr('id',
+            var options = $.extend({}, settings, dataOptions);
+            var $modalDialog = $(options.modal).attr('id',
                     'modalFormId-' + ++idCounter);
-            if (settings.size) {
-                $modalDialog.find('.modal-dialog').addClass(settings.size);
+            if (options.size) {
+                $modalDialog.find('.modal-dialog').addClass(options.size);
             }
             $('body').append($modalDialog);
             var $content = $modalDialog.find('.modal-content');
@@ -56,7 +60,7 @@
                 return $content.html(settings.loading);
             };
             $modalDialog.error = function($error) {
-                return $content.html($(settings.error).html($error));
+                return $content.html($(options.error).html($error));
             };
             $modalDialog.content = function(html) {
                 return $content.html(html);
@@ -86,16 +90,15 @@
             });
             return $modalDialog;
         };
-
-        return this.each(function() {
+        $('body').on('click', settings.selector, function() {
             var $this = $(this);
-            $this.on('click', function() {
-                var $self = $(this);
-                var url = $self.data('url') || $self.attr('href');
-                $modalDialog = createModalDialog($this.data());
-                ajaxContent({url : url}, $modalDialog);
-                return false;
-            });
+            var url = $this.data('url') || $this.attr('href');
+            if (settings.single) {
+                $('.modal').modal('hide');
+            }
+            $modalDialog = createModalDialog($this.data());
+            ajaxContent({url : url}, $modalDialog);
+            return false;
         });
     };
 })(window.jQuery);
