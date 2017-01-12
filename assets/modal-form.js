@@ -13,7 +13,7 @@
         var self = this;
         this.defaultOptions = {
             selector: '.modal-form',
-            single: true,
+            singleton: true,
             size : null,
             loginUrl : null,
             loading : '<div class="modal-header">Loading...</div>'
@@ -49,8 +49,17 @@
         
         var createModalDialog = function(dataOptions) {
             var options = $.extend({}, settings, dataOptions);
-            var $modalDialog = $(options.modal).attr('id',
-                    'modalFormId-' + ++idCounter);
+            
+            if (settings.singleton && self.modalDialog) {
+                if ('size' in options) {
+                    self.modalDialog.find('.modal-dialog').removeClass('modal-sm modal-lg').addClass(options.size);
+                }
+                return self.modalDialog;
+            }
+            var $modalDialog = $(options.modal).attr('id', 'modalFormId-' + ++idCounter);
+            if (settings.singleton) {
+                self.modalDialog = $modalDialog;    
+            }
             if (options.size) {
                 $modalDialog.find('.modal-dialog').addClass(options.size);
             }
@@ -67,6 +76,9 @@
             };
             $modalDialog.on('hidden.bs.modal', function(e) {
                 $(this).remove();
+                if (settings.singleton) {
+                    self.modalDialog = null;
+                }
             });
             $modalDialog.on('submit', 'form', function(event) {
                 event.preventDefault();
@@ -93,9 +105,6 @@
         $('body').on('click', settings.selector, function() {
             var $this = $(this);
             var url = $this.data('url') || $this.attr('href');
-            if (settings.single) {
-                $('.modal').modal('hide');
-            }
             $modalDialog = createModalDialog($this.data());
             ajaxContent({url : url}, $modalDialog);
             return false;

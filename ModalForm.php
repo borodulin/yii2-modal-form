@@ -24,7 +24,7 @@ class ModalForm extends Widget
 
     public $selector = '.modal-form';
 
-    public $single = true;
+    public $singleton = true;
 
     public $options;
 
@@ -37,7 +37,7 @@ class ModalForm extends Widget
             'size' => $this->size,
             'loginUrl' => $this->loginUrl,
             'selector' => $this->selector,
-            'single' => $this->single,
+            'singleton' => $this->singleton,
         ], (array) $this->options);
         ModalFormAsset::register($this->view);
     }
