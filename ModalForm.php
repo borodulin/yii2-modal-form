@@ -36,7 +36,6 @@ class ModalForm extends Widget
         $this->options = ArrayHelper::merge([
             'size' => $this->size,
             'loginUrl' => $this->loginUrl,
-            'selector' => $this->selector,
             'singleton' => $this->singleton,
         ], (array) $this->options);
         ModalFormAsset::register($this->view);
@@ -45,6 +44,17 @@ class ModalForm extends Widget
     public function run()
     {
         $options = json_encode($this->options);
-        $this->view->registerJs("$.modalForm($options);");
+        if ($this->selector) {
+            $js = <<<JS
+$('body').on('click', '{$this->selector}', function() {
+    var options = $.extend($options, {url: $(this).data('url') || $(this).attr('href')});
+    console.log(options);
+    $.createModalForm(options);
+    return false;
+});
+JS;
+            $this->view->registerJs($js);
+        }
+
     }
 }
