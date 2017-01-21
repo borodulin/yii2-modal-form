@@ -4,7 +4,7 @@ Yii2 Ajax modal form
 ## Description
 
 This extension allows you to quickly add full-featured modal forms to your appllication.
-Mail featues are:
+Main featues are:
 
 1. Based on bootstrap modal forms.
 2. Allows quickly add behavior to interact with viewing and updating data in modal dialogs.
