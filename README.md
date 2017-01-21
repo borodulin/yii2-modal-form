@@ -4,6 +4,10 @@ Yii2 Ajax modal form
 ## Description
 
 This extension allows you to quickly add full-featured modal forms to your appllication.
+Mail featues are:
+    1. Based on bootstrap modal forms.
+    2. Allows quickly add behavior to interact with viewing and updating data in modal dialogs.
+    3. Catch form post events, converts them to ajax request and display results in the same modal dialog.
 
 ## Installation
 
@@ -23,7 +27,33 @@ or add
 to the ```require``` section of your `composer.json` file.
 
 ## Usage
-
+Somewhere in the main layout
+```php
+\conquer\modal\ModalForm;::widget([
+    'selector' => '.modal-form',
+]);
+```
+Whenever you want to add behavior to tag a, just add class 'modal-form'
+```php
+    echo Html::a('Some modal action', ['controller/action'], ['class' => 'modal-form']);
+``` 
+To improve traffic data and error exceptions you need to control layout rendering when ajax requests.
+I recommend you to override default rendering in your controllers:
+```php
+class Controller extends \yii\web\Controller
+{
+    /**
+     * Exclude layout rendering when ajax requests
+     */
+    public function render($view, $params = [])
+    {
+        if (\Yii::$app->request->isAjax) {
+            return $this->renderPartial($view, $params);
+        }
+        return parent::render($view, $params);
+    }
+}
+``` 
 
 ## License
 
