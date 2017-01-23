@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yii2 modalf form extension</title>
+<link rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+<link rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+    integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+    crossorigin="anonymous">
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/default.min.css"
+    integrity="sha256-Zd1icfZ72UBmsId/mUcagrmN7IN5Qkrvh75ICHIQVTk="
+    crossorigin="anonymous" />
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700'
+    rel='stylesheet' type='text/css'>
+<link href="/css/site.css" rel="stylesheet">
+</head>
+<body>
+    <div class="wrap">
+        <nav id="w0" class="navbar-inverse navbar-fixed-top navbar"
+            role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle"
+                        data-toggle="collapse"
+                        data-target="#w0-collapse">
+                        <span class="sr-only">Toggle navigation</span> <span
+                            class="icon-bar"></span> <span
+                            class="icon-bar"></span> <span
+                            class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">Modal forms</a>
+                </div>
+                <div id="w0-collapse" class="collapse navbar-collapse">
+                    <ul id="w1" class="navbar-nav navbar-right nav">
+                        <li class="active"><a
+                            href="/index.php?r=site%2Findex">Home</a></li>
+                        <li><a class="modal-form"
+                            href="/index.php?r=site%2Flogin">Login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="site-index">
+
+                <div class="jumbotron">
+                    <section class="page-header">
+                        <h1 class="project-name">Yii2 modal forms</h1>
+                        <h2 class="project-tagline">Extension for Yii2 framework</h2>
+                        <a href="https://github.com/borodulin/yii2-modal-form"
+                            class="btn btn-success">View on GitHub</a> <a
+                            href="https://github.com/borodulin/yii2-modal-form/zipball/master"
+                            class="btn btn-success">Download .zip</a> <a
+                            href="https://github.com/borodulin/yii2-modal-form/tarball/master"
+                            class="btn btn-success">Download .tar.gz</a>
+                    </section>
+                </div>
+
+                <div class="body-content">
+                    <div class="row">
+                        <h3>
+                            <a id="user-content-header-3" class="anchor"
+                                href="#header-3" aria-hidden="true"><span
+                                class="octicon octicon-link"></span></a>Basic usage
+                        </h3>
+                
+                        <pre>
+                            <code class="php">
+/**
+ * Add widget in the main layout or view
+ */
+\conquer\modal\ModalForm::widget([
+    'selector' => '.modal-form',
+]);
+                            </code>
+                        </pre>
+                    </div>
+                    <div class="row">
+                        <p>Just add class modal-form to any clickable element.</p>
+                        <div id="exTab2" class="container">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#s1-1"
+                                    data-toggle="tab">Php code</a></li>
+                                <li><a href="#s1-2" data-toggle="tab">Html
+                                        output</a></li>
+                                <li><a href="#s1-3" data-toggle="tab">Try it</a></li>
+                            </ul>
+                
+                            <div class="tab-content ">
+                                <div class="tab-pane active" id="s1-1">
+                                    <pre>
+                                        <code class="php">
+Html::a('Sample modal form', 'ajax.html', ['class' => 'btn btn-primary modal-form']);
+                                        </code>
+                                    </pre>
+                                </div>
+                                <div class="tab-pane" id="s1-2">
+                                    <pre>
+                                        <code class="html">
+&lt;a href="ajax.html" class="btn btn-primary modal-form"&gt;Sample modal form&lt;/a&gt;
+                                        </code>
+                                    </pre>
+                                </div>
+                                <div class="tab-pane" id="s1-3">
+                                    <pre>
+                                        <code>
+                                            <a href="ajax.html" class="btn btn-primary modal-form">Sample modal form</a>
+                                        </code>
+                                    </pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="pull-left">&copy; My Company 2017</p>
+
+            <p class="pull-right">
+                Powered by <a href="http://www.yiiframework.com/"
+                    rel="external">Yii Framework</a>
+            </p>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+    <script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"
+        integrity="sha256-KbfTjB0WZ8vvXngdpJGY3Yp3xKk+tttbqClO11anCIU="
+        crossorigin="anonymous"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/javascript.min.js"
+        integrity="sha256-sZa6ttk3lwj5MNkWzq2VrQ6WFB965Gn0uLe3oUBH2Iw="
+        crossorigin="anonymous"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/php.min.js"
+        integrity="sha256-GRXMU+6LhnGd+e5/EWBdAS8EekJQISjEuK/IMZiPBTU="
+        crossorigin="anonymous"></script>
+    <script src="js/modal-form.js"></script>
+    <script type="text/javascript">
+jQuery(document).ready(function() {
+    $('body').on('click', '.modal-form', function() {
+        var options = $.extend({ "size" : null, "singleton" : true}, { url : $(this).data('url') || $(this).attr('href')});
+        $.createModalForm(options);
+        return false;
+    });
+    $('body').on('click', '.modal-form-lg', function() {
+        var options = $.extend({"size" : "modal-lg", "singleton" : false}, {url : $(this).data('url') || $(this).attr('href')});
+        $.createModalForm(options);
+        return false;
+    });
+    $('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+    });
+});
+    </script>
+</body>
+</html>
