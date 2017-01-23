@@ -66,7 +66,7 @@
                 },
                 error : function(jqXHR) {
                     if ((jqXHR.status === 401) && (settings.loginUrl)) {
-                        ajaxContent({
+                        $modalDialog.ajaxContent({
                             url : settings.loginUrl
                         });
                     } else {
