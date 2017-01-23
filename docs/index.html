@@ -83,7 +83,7 @@
                     </div>
                     <div class="row">
                         <p>Just add class modal-form to any clickable element.</p>
-                        <div id="exTab2" class="container">
+                        <div id="exTab1" class="container">
                             <ul class="nav nav-tabs">
                                 <li class="active"><a href="#s1-1"
                                     data-toggle="tab">Php code</a></li>
@@ -153,7 +153,42 @@ Html::a('Sample modal form', 'ajax-size.html', ['class' => 'btn btn-primary moda
                             </div>
                         </div>
                     </div>
-                    
+                    <div class="row">
+                        <p>Use <b>data-singleton</b> attribute to configure multiple modals berhavior.</p>
+                        <div id="exTab3" class="container">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#s3-1"
+                                    data-toggle="tab">Php code</a></li>
+                                <li><a href="#s3-2" data-toggle="tab">Html
+                                        output</a></li>
+                                <li><a href="#s3-3" data-toggle="tab">Try it</a></li>
+                            </ul>
+                
+                            <div class="tab-content ">
+                                <div class="tab-pane active" id="s3-1">
+                                    <pre>
+                                        <code class="php">
+Html::a('Sample modal form', 'ajax-singleton.html', ['class' => 'btn btn-primary modal-form', 'data-singleton' => false]);
+                                        </code>
+                                    </pre>
+                                </div>
+                                <div class="tab-pane" id="s3-2">
+                                    <pre>
+                                        <code class="html">
+&lt;a href="ajax-singleton.html" class="btn btn-primary modal-form" data-singleton="false"&gt;Sample modal form&lt;/a&gt;
+                                        </code>
+                                    </pre>
+                                </div>
+                                <div class="tab-pane" id="s3-3">
+                                    <pre>
+                                        <code>
+                                            <a href="ajax-singleton.html" class="btn btn-primary modal-form" data-singleton=false>Sample modal form</a>
+                                        </code>
+                                    </pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
