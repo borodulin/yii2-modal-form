@@ -192,7 +192,7 @@ Html::a('Sample modal form', 'ajax-size.html', ['class' => 'btn btn-primary moda
     <script type="text/javascript">
 jQuery(document).ready(function() {
     $('body').on('click', '.modal-form', function() {
-        var options = $.extend({ "size" : null, "singleton" : true}, { url : $(this).data('url') || $(this).attr('href')});
+        var options = $.extend($options, {url: $(this).attr('href')}, $(this).data());
         $.createModalForm(options);
         return false;
     });

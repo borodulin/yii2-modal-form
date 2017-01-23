@@ -47,7 +47,7 @@ class ModalForm extends Widget
         if ($this->selector) {
             $js = <<<JS
 $('body').on('click', '{$this->selector}', function() {
-    var options = $.extend($options, {url: $(this).data('url') || $(this).attr('href')});
+    var options = $.extend($options, {url: $(this).attr('href')}, $(this).data());
     $.createModalForm(options);
     return false;
 });
