@@ -96,9 +96,6 @@
             $modalDialog.ajaxContent(ajax);
             return false;
         });
-        if (options.url) {
-            $modalDialog.ajaxContent({url : options.url});
-        }
         return $modalDialog;
     };
 })(window.jQuery);
