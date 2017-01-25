@@ -227,11 +227,12 @@ Html::a('Sample modal form', 'ajax-singleton.html', ['class' => 'btn btn-primary
     <script type="text/javascript">
 jQuery(document).ready(function() {
     $('body').on('click', '.modal-form', function() {
-        $.createModalForm({}).ajaxContent({url : $(this).attr('href') || $(this).data('url')});
+        $.createModalForm($(this).data()).ajaxContent({url : $(this).attr('href') || $(this).data('url')});
         return false;
     });
     $('body').on('click', '.modal-form-lg', function() {
-        $.createModalForm({"size" : "modal-lg", "singleton" : false}).ajaxContent({url : $(this).attr('href') || $(this).data('url')});;
+        var options = $.extend({"size" : "modal-lg", "singleton" : false}, $(this).data());
+        $.createModalForm(options).ajaxContent({url : $(this).attr('href') || $(this).data('url')});;
         return false;
     });
     $('pre code').each(function(i, block) {
