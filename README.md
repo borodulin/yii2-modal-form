@@ -30,7 +30,7 @@ to the ```require``` section of your `composer.json` file.
 ## Usage
 Somewhere in the main layout
 ```php
-\conquer\modal\ModalForm;::widget([
+\conquer\modal\ModalForm::widget([
     'selector' => '.modal-form',
 ]);
 ```
