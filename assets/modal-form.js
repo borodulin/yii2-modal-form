@@ -63,6 +63,9 @@
             $.ajax($.extend(ajax, {
                 success : function(response) {
                     $modalDialog.content(response);
+                    if ('success' in options) {
+                        eval(options.success);
+                    }
                 },
                 error : function(jqXHR) {
                     if ((jqXHR.status === 401) && (settings.loginUrl)) {
@@ -80,11 +83,11 @@
             event.preventDefault();
             var form = this;
             var $form = $(form);
-            method = $form.attr('method').toLowerCase() || 'post';
+            var method = $form.attr('method').toLowerCase() || 'post';
             var ajax = {
                 url : $form.attr('action')
             };
-            if (method == 'post') {
+            if (method === 'post') {
                 ajax.data = new FormData(form);
                 ajax.type = 'post';
                 ajax.enctype = 'multipart/form-data';
