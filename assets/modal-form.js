@@ -5,10 +5,7 @@
  */
 ;
 (function($) {
-    $.ajaxPrefilter(function(options, originalOptions, jqXHR) {
-        options.async = true;
-    });
-    
+
     var idCounter = 0;
 
     var self = this;
@@ -28,7 +25,7 @@
                     + '<div class="modal-content"></div>' + '</div>' + '</div>',
             error : '<div class="error-summary"></div>'
         }, options);
-        if (options.singleton && self.modalDialog) {
+        if (options.singleton && self.hasOwnProperty('modalDialog')) {
             if ('size' in options) {
                 self.modalDialog.find('.modal-dialog').removeClass('modal-sm modal-lg').addClass(options.size);
             }
@@ -52,7 +49,7 @@
         $modalDialog.content = function(html) {
             return $content.html(html);
         };
-        $modalDialog.on('hidden.bs.modal', function(e) {
+        $modalDialog.on('hidden.bs.modal', function() {
             $(this).remove();
             if (options.singleton) {
                 self.modalDialog = null;
@@ -68,9 +65,9 @@
                     }
                 },
                 error : function(jqXHR) {
-                    if ((jqXHR.status === 401) && (settings.loginUrl)) {
+                    if ((jqXHR.status === 401) && (options.loginUrl)) {
                         $modalDialog.ajaxContent({
-                            url : settings.loginUrl
+                            url : options.loginUrl
                         });
                     } else {
                         $modalDialog.error(jqXHR.responseText);
