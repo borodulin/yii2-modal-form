@@ -25,7 +25,7 @@
                     + '<div class="modal-content"></div>' + '</div>' + '</div>',
             error : '<div class="error-summary"></div>'
         }, options);
-        if (options.singleton && self.hasOwnProperty('modalDialog')) {
+        if (options.singleton && self.hasOwnProperty('modalDialog') && self.modalDialog) {
             if ('size' in options) {
                 self.modalDialog.find('.modal-dialog').removeClass('modal-sm modal-lg').addClass(options.size);
             }
