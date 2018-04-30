@@ -28,6 +28,8 @@ class ModalForm extends Widget
 
     public $options;
 
+    public $clientOptions;
+
     public function init()
     {
         if (! $this->loginUrl && ! empty(\Yii::$app->user->loginUrl)) {
@@ -44,11 +46,12 @@ class ModalForm extends Widget
     public function run()
     {
         $options = json_encode($this->options);
+        $clientOptions = json_encode($this->clientOptions);
         if ($this->selector) {
             $js = <<<JS
 $('body').on('click', '{$this->selector}', function() {
     var options = $.extend($options, $(this).data());
-    $.createModalForm(options).ajaxContent({url : $(this).attr('href') || $(this).data('url')});;
+    $.createModalForm(options, $clientOptions).ajaxContent({url : $(this).attr('href') || $(this).data('url')});;
     return false;
 });
 JS;

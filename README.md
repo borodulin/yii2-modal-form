@@ -56,6 +56,21 @@ class Controller extends \yii\web\Controller
 }
 ``` 
 
+####Client Options
+To add client options use `clientOptions` key. Available client options are: `id`, `class`, `tabindex`. 
+* Id key **replaces** existing auto generated id attribute. 
+* Class key **adds** classes to html class attribute. 
+* Tabindex key **replaces** existing default tabindex html attribute (-1), when false, then no tabindex attribute appears.
+```
+\conquer\modal\ModalForm::widget([
+    'selector' => '.modal-form',
+    'clientOptions' => [
+        'id' => 'sample-unique-id',
+        'class' => 'sample-class1 sample-class2',
+        'tabindex' => false
+    ]
+]); 
+
 ## License
 
 **conquer/modal** is released under the MIT License. See the bundled `LICENSE` for details.
