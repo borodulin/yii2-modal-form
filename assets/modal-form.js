@@ -10,7 +10,7 @@
 
     var self = this;
     
-    $.createModalForm = function(options) {
+    $.createModalForm = function(options, clientOptions) {
         options = $.extend({
             singleton: true,
             size : null,
@@ -37,6 +37,19 @@
         }
         if (options.size) {
             $modalDialog.find('.modal-dialog').addClass(options.size);
+        }
+        if (clientOptions) {
+            if (clientOptions.id) {
+                $modalDialog.attr('id', clientOptions.id);
+            }
+            if (clientOptions.class) {
+                $modalDialog.addClass(clientOptions.class);
+            }
+            if (clientOptions.tabindex) {
+                $modalDialog.attr('tabindex', clientOptions.tabindex);
+            } else if (clientOptions.tabindex == false) {
+                $modalDialog.removeAttr('tabindex');
+            }
         }
         $('body').append($modalDialog);
         var $content = $modalDialog.find('.modal-content');
