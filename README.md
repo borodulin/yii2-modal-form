@@ -56,7 +56,7 @@ class Controller extends \yii\web\Controller
 }
 ``` 
 
-###Client Options
+### Client Options
 To add client options use `clientOptions` key. Available client options are: `id`, `class`, `tabindex`. 
 * Id key **replaces** existing auto generated id attribute. 
 * Class key **adds** classes to html class attribute. 
