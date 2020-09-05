@@ -8,6 +8,8 @@ namespace conquer\modal;
 
 use yii\base\Widget;
 use yii\helpers\ArrayHelper;
+use conquer\modal\ModalFormAsset;
+use conquer\modal\ModalFormAsset4;
 
 class ModalForm extends Widget
 {
@@ -53,14 +55,13 @@ class ModalForm extends Widget
 
         //force bootstrap version usage
         if ($this->forceBsVersion) {
-            $this->_bsVersion = $this->forceBsVersion;
-            return;
+            $this->_bsVersion = self::BS_4;
         }
 
-        //is bs4 version
-        $assetClassName = 'ModalFormAsset'.$this->_bsVersion;
-        
-        $assetClassName::register($this->view);
+        //dynamic asset version here
+        $assetClassName = 'conquer\modal\ModalFormAsset'.$this->_bsVersion;
+        $class = $assetClassName;
+        $class::register($this->view);
         
     }
 
