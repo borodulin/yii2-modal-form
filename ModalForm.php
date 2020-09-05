@@ -8,7 +8,6 @@ namespace conquer\modal;
 
 use yii\base\Widget;
 use yii\helpers\ArrayHelper;
-use conquer\modal\traits\AssetTrait;
 
 class ModalForm extends Widget
 {
