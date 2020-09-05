@@ -11,7 +11,6 @@ use yii\helpers\ArrayHelper;
 
 class ModalForm extends Widget
 {
-    use AssetTrait;
 
     const SIZE_LARGE = "modal-lg";
 
