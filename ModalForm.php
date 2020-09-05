@@ -8,9 +8,11 @@ namespace conquer\modal;
 
 use yii\base\Widget;
 use yii\helpers\ArrayHelper;
+use conquer\modal\traits\AssetTrait;
 
 class ModalForm extends Widget
 {
+    use AssetTrait;
 
     const SIZE_LARGE = "modal-lg";
 
@@ -58,9 +60,10 @@ class ModalForm extends Widget
         }
 
         //is bs4 version
-
-        ModalFormAsset->depends = ['yii\bootstrap'.$this->_bsVersion.'\BootstrapPluginAsset'];
-        ModalFormAsset::register($this->view);
+        $assetClassName = 'ModalFormAsset'.$this->_bsVersion;
+        
+        $assetClassName::register($this->view);
+        
     }
 
     public function run()
