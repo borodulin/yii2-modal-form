@@ -18,6 +18,12 @@ class ModalForm extends Widget
 
     const SIZE_DEFAULT = "";
 
+    /**
+     * BS VERSION
+     */
+    const BS_3 = 3;
+    const BS_4 = 4;
+
     public $size;
 
     public $loginUrl;
@@ -30,6 +36,10 @@ class ModalForm extends Widget
 
     public $clientOptions;
 
+    private $_bsVersion;
+
+    public $forceBsVersion = false;
+
     public function init()
     {
         if (! $this->loginUrl && ! empty(\Yii::$app->user->loginUrl)) {
@@ -40,6 +50,16 @@ class ModalForm extends Widget
             'loginUrl' => $this->loginUrl,
             'singleton' => $this->singleton,
         ], (array) $this->options);
+
+        //force bootstrap version usage
+        if ($this->forceBsVersion) {
+            $this->_bsVersion = $this->forceBsVersion;
+            return;
+        }
+
+        //is bs4 version
+
+        ModalFormAsset->depends = ['yii\bootstrap'.$this->_bsVersion.'\BootstrapPluginAsset'];
         ModalFormAsset::register($this->view);
     }
 
