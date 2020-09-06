@@ -8,6 +8,8 @@ namespace conquer\modal;
 
 use yii\base\Widget;
 use yii\helpers\ArrayHelper;
+use conquer\modal\ModalFormAsset;
+use conquer\modal\ModalFormAsset4;
 
 class ModalForm extends Widget
 {
@@ -17,6 +19,12 @@ class ModalForm extends Widget
     const SIZE_SMALL = "modal-sm";
 
     const SIZE_DEFAULT = "";
+
+    /**
+     * BS VERSION
+     */
+    const BS_3 = 3;
+    const BS_4 = 4;
 
     public $size;
 
@@ -30,6 +38,10 @@ class ModalForm extends Widget
 
     public $clientOptions;
 
+    private $_bsVersion;
+
+    public $forceBsVersion = false;
+
     public function init()
     {
         if (! $this->loginUrl && ! empty(\Yii::$app->user->loginUrl)) {
@@ -40,7 +52,17 @@ class ModalForm extends Widget
             'loginUrl' => $this->loginUrl,
             'singleton' => $this->singleton,
         ], (array) $this->options);
-        ModalFormAsset::register($this->view);
+
+        //force bootstrap version usage
+        if ($this->forceBsVersion) {
+            $this->_bsVersion = self::BS_4;
+        }
+
+        //dynamic asset version here
+        $assetClassName = 'conquer\modal\ModalFormAsset'.$this->_bsVersion;
+        $class = $assetClassName;
+        $class::register($this->view);
+        
     }
 
     public function run()
