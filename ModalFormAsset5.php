@@ -6,7 +6,7 @@
  */
 namespace conquer\modal;
 
-class ModalFormAsset4 extends \yii\web\AssetBundle
+class ModalFormAsset5 extends \yii\web\AssetBundle
 {
 
     public $sourcePath = '@conquer/modal/assets';
