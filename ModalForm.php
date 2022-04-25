@@ -25,6 +25,7 @@ class ModalForm extends Widget
      */
     const BS_3 = 3;
     const BS_4 = 4;
+    const BS_5 = 5;
 
     public $size;
 
@@ -40,7 +41,7 @@ class ModalForm extends Widget
 
     private $_bsVersion;
 
-    public $forceBsVersion = false;
+    public $bsVersion = 3;
 
     public function init()
     {
@@ -53,10 +54,9 @@ class ModalForm extends Widget
             'singleton' => $this->singleton,
         ], (array) $this->options);
 
-        //force bootstrap version usage
-        if ($this->forceBsVersion) {
-            $this->_bsVersion = self::BS_4;
-        }
+        //custom bootstrap version usage
+        $this->_bsVersion = $this->bsVersion;
+        
 
         //dynamic asset version here
         $assetClassName = 'conquer\modal\ModalFormAsset'.$this->_bsVersion;
