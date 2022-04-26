@@ -50,6 +50,11 @@
             } else if (clientOptions.tabindex == false) {
                 $modalDialog.removeAttr('tabindex');
             }
+            if (clientOptions.backdrop) {
+                $modalDialog.attr('data-backdrop', clientOptions.backdrop);
+            } else if (clientOptions.backdrop == false) {
+                $modalDialog.removeAttr('data-backdrop');
+            }
         }
         $('body').append($modalDialog);
         var $content = $modalDialog.find('.modal-content');
