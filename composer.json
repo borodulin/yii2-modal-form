@@ -1,7 +1,12 @@
 {
     "name": "conquer/modal",
     "description": "Extension for the Yii2 framework",
-    "keywords": ["yii2", "modal", "ajax", "form"],
+    "keywords": [
+        "yii2",
+        "modal",
+        "ajax",
+        "form"
+    ],
     "homepage": "https://github.com/borodulin/yii2-modal-form",
     "type": "yii2-extension",
     "license": "MIT",
@@ -16,11 +21,12 @@
         }
     ],
     "require": {
-        "yiisoft/yii2": ">=2.0.4"
+        "php": "^7.4 || ^8.0",
+        "yiisoft/yii2": "^2.0.4"
     },
     "autoload": {
         "psr-4": {
-        	"conquer\\modal\\": ""
+            "conquer\\modal\\": ""
         }
     },
     "extra": {
