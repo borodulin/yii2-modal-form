@@ -55,7 +55,7 @@
             } else if (clientOptions.backdrop == false) {
                 $modalDialog.removeAttr('data-bs-backdrop');
             }
-            if (clientOptions.backdrop) {
+            if (clientOptions.keyboard) {
                 $modalDialog.attr('data-bs-keyboard', clientOptions.keyboard);
             } else if (clientOptions.keyboard == false) {
                 $modalDialog.removeAttr('data-bs-keyboard');

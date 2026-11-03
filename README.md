@@ -34,6 +34,13 @@ Somewhere in the main layout
     'selector' => '.modal-form',
 ]);
 ```
+Bootstrap 4 and 5 are supported via `bsVersion` (default is `3`):
+```php
+\conquer\modal\ModalForm::widget([
+    'selector' => '.modal-form',
+    'bsVersion' => \conquer\modal\ModalForm::BS_5,
+]);
+```
 Whenever you want to add behavior to tag a, just add class 'modal-form'
 ```php
     echo Html::a('Some modal action', ['controller/action'], ['class' => 'modal-form']);

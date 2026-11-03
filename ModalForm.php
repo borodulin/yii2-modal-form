@@ -10,6 +10,7 @@ use yii\base\Widget;
 use yii\helpers\ArrayHelper;
 use conquer\modal\ModalFormAsset;
 use conquer\modal\ModalFormAsset4;
+use conquer\modal\ModalFormAsset5;
 
 class ModalForm extends Widget
 {
@@ -39,8 +40,6 @@ class ModalForm extends Widget
 
     public $clientOptions;
 
-    private $_bsVersion;
-
     public $bsVersion = 3;
 
     public function init()
@@ -54,13 +53,16 @@ class ModalForm extends Widget
             'singleton' => $this->singleton,
         ], (array) $this->options);
 
-        //custom bootstrap version usage
-        $this->_bsVersion = $this->bsVersion;
-        
-
-        //dynamic asset version here
-        $assetClassName = 'conquer\modal\ModalFormAsset'.$this->_bsVersion;
-        $class = $assetClassName;
+        $assets = [
+            self::BS_3 => ModalFormAsset::class,
+            self::BS_4 => ModalFormAsset4::class,
+            self::BS_5 => ModalFormAsset5::class,
+        ];
+        $version = (int) $this->bsVersion;
+        if (!isset($assets[$version])) {
+            throw new \yii\base\InvalidConfigException("Unsupported bsVersion: {$this->bsVersion}");
+        }
+        $class = $assets[$version];
         $class::register($this->view);
         
     }
