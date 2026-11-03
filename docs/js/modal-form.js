@@ -80,7 +80,7 @@
             event.preventDefault();
             var form = this;
             var $form = $(form);
-            method = $form.attr('method').toLowerCase() || 'post';
+            method = ($form.attr('method') || 'post').toLowerCase();
             var ajax = {
                 url : $form.attr('action')
             };
