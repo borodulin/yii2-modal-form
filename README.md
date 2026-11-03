@@ -1,5 +1,8 @@
-Yii2 Ajax modal form
-=================
+# Yii2 Ajax modal form
+
+[![Latest Version](https://img.shields.io/packagist/v/conquer/modal.svg)](https://packagist.org/packages/conquer/modal)
+[![Total Downloads](https://img.shields.io/packagist/dt/conquer/modal.svg)](https://packagist.org/packages/conquer/modal)
+[![License](https://img.shields.io/packagist/l/conquer/modal.svg)](LICENSE)
 
 ## Description
 
@@ -10,22 +13,18 @@ Main featues are:
 2. Allows quickly add behavior to interact with viewing and updating data in modal dialogs.
 3. Catch form post events, converts them to ajax request and display results in the same modal dialog.
 
+## Requirements
+
+- PHP 7.4 or 8.x
+- Yii 2.0.4 or newer (2.0.x)
+
 ## Installation
 
-The preferred way to install this extension is through [composer](http://getcomposer.org/download/). 
+Install the extension via [Composer](https://getcomposer.org):
 
-To install, either run
-
+```bash
+composer require conquer/modal:^1.3
 ```
-$ php composer.phar require conquer/modal "*"
-```
-or add
-
-```
-"conquer/modal": "*"
-```
-
-to the ```require``` section of your `composer.json` file.
 
 ## Usage
 Somewhere in the main layout
@@ -81,4 +80,4 @@ To add client options use `clientOptions` key. Available client options are: `id
 
 ## License
 
-**conquer/modal** is released under the MIT License. See the bundled `LICENSE` for details.
+**conquer/modal** is released under the MIT License. See the bundled [`LICENSE`](LICENSE) for details.
