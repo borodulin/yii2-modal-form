@@ -12,7 +12,7 @@ class ModalFormAsset5 extends \yii\web\AssetBundle
     public $sourcePath = '@conquer/modal/assets';
 
     public $js = [
-        'modal-form.js'
+        'modal-form-bs5.js'
     ];
 
     public $depends = [
