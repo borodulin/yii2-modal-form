@@ -5,15 +5,12 @@
  */
 ;
 (function($) {
-    $.ajaxPrefilter(function(options, originalOptions, jqXHR) {
-        options.async = true;
-    });
-    
+
     var idCounter = 0;
 
     var self = this;
     
-    $.createModalForm = function(options) {
+    $.createModalForm = function(options, clientOptions) {
         options = $.extend({
             singleton: true,
             size : null,
@@ -28,7 +25,7 @@
                     + '<div class="modal-content"></div>' + '</div>' + '</div>',
             error : '<div class="error-summary"></div>'
         }, options);
-        if (options.singleton && self.modalDialog) {
+        if (options.singleton && self.hasOwnProperty('modalDialog') && self.modalDialog) {
             if ('size' in options) {
                 self.modalDialog.find('.modal-dialog').removeClass('modal-sm modal-lg').addClass(options.size);
             }
@@ -41,6 +38,29 @@
         if (options.size) {
             $modalDialog.find('.modal-dialog').addClass(options.size);
         }
+        if (clientOptions) {
+            if (clientOptions.id) {
+                $modalDialog.attr('id', clientOptions.id);
+            }
+            if (clientOptions.class) {
+                $modalDialog.addClass(clientOptions.class);
+            }
+            if (clientOptions.tabindex) {
+                $modalDialog.attr('tabindex', clientOptions.tabindex);
+            } else if (clientOptions.tabindex == false) {
+                $modalDialog.removeAttr('tabindex');
+            }
+            if (clientOptions.backdrop) {
+                $modalDialog.attr('data-backdrop', clientOptions.backdrop);
+            } else if (clientOptions.backdrop == false) {
+                $modalDialog.removeAttr('data-backdrop');
+            }
+            if (clientOptions.keyboard) {
+                $modalDialog.attr('data-keyboard', clientOptions.keyboard);
+            } else if (clientOptions.keyboard == false) {
+                $modalDialog.removeAttr('data-keyboard');
+            }
+        }
         $('body').append($modalDialog);
         var $content = $modalDialog.find('.modal-content');
         $modalDialog.loading = function() {
@@ -52,7 +72,7 @@
         $modalDialog.content = function(html) {
             return $content.html(html);
         };
-        $modalDialog.on('hidden.bs.modal', function(e) {
+        $modalDialog.on('hidden.bs.modal', function() {
             $(this).remove();
             if (options.singleton) {
                 self.modalDialog = null;
@@ -63,11 +83,14 @@
             $.ajax($.extend(ajax, {
                 success : function(response) {
                     $modalDialog.content(response);
+                    if ('success' in options) {
+                        eval(options.success);
+                    }
                 },
                 error : function(jqXHR) {
-                    if ((jqXHR.status === 401) && (settings.loginUrl)) {
+                    if ((jqXHR.status === 401) && (options.loginUrl)) {
                         $modalDialog.ajaxContent({
-                            url : settings.loginUrl
+                            url : options.loginUrl
                         });
                     } else {
                         $modalDialog.error(jqXHR.responseText);
@@ -80,18 +103,24 @@
             event.preventDefault();
             var form = this;
             var $form = $(form);
-            method = ($form.attr('method') || 'post').toLowerCase();
+            var method = ($form.attr('method') || 'post').toLowerCase();
             var ajax = {
                 url : $form.attr('action')
             };
-            if (method == 'post') {
+            // the name/value of the clicked submit button is not part of the form data
+            var submitter = event.originalEvent && event.originalEvent.submitter;
+            var button = (submitter && submitter.name) ? {name: submitter.name, value: submitter.value} : null;
+            if (method === 'post') {
                 ajax.data = new FormData(form);
+                if (button) {
+                    ajax.data.append(button.name, button.value);
+                }
                 ajax.type = 'post';
                 ajax.enctype = 'multipart/form-data';
                 ajax.processData = false; // tell jQuery not to process the data
                 ajax.contentType = false; // tell jQuery not to set contentType
             } else {
-                ajax.data = $form.serialize();
+                ajax.data = $form.serialize() + (button ? '&' + $.param([button]) : '');
             }
             $modalDialog.ajaxContent(ajax);
             return false;

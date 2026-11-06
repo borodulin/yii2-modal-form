@@ -23,7 +23,7 @@ Main featues are:
 Install the extension via [Composer](https://getcomposer.org):
 
 ```bash
-composer require conquer/modal:^1.3
+composer require conquer/modal:^1.4
 ```
 
 ## Usage
@@ -33,7 +33,8 @@ Somewhere in the main layout
     'selector' => '.modal-form',
 ]);
 ```
-Bootstrap 4 and 5 are supported via `bsVersion` (default is `3`):
+Bootstrap 3, 4 and 5 are supported. The version is detected from the installed Yii Bootstrap extension
+(`yiisoft/yii2-bootstrap`, `yii2-bootstrap4` or `yii2-bootstrap5`); set `bsVersion` to choose it explicitly:
 ```php
 \conquer\modal\ModalForm::widget([
     'selector' => '.modal-form',
@@ -63,10 +64,14 @@ class Controller extends \yii\web\Controller
 ``` 
 
 ### Client Options
-To add client options use `clientOptions` key. Available client options are: `id`, `class`, `tabindex`. 
-* Id key **replaces** existing auto generated id attribute. 
-* Class key **adds** classes to html class attribute. 
+To add client options use `clientOptions` key. Available client options are: `id`, `class`, `tabindex`, `backdrop`, `keyboard`.
+* Id key **replaces** existing auto generated id attribute.
+* Class key **adds** classes to html class attribute.
 * Tabindex key **replaces** existing default tabindex html attribute (-1), when false, then no tabindex attribute appears.
+* Backdrop and keyboard keys set the Bootstrap `backdrop` (`true`, `false` or `'static'`) and `keyboard` options of the modal.
+
+The name and value of the clicked submit button are sent with the form, so several submit buttons
+(for example "Save" and "Apply") can be told apart on the server.
 ```
 \conquer\modal\ModalForm::widget([
     'selector' => '.modal-form',

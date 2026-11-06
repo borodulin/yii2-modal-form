@@ -107,14 +107,20 @@
             var ajax = {
                 url : $form.attr('action')
             };
+            // the name/value of the clicked submit button is not part of the form data
+            var submitter = event.originalEvent && event.originalEvent.submitter;
+            var button = (submitter && submitter.name) ? {name: submitter.name, value: submitter.value} : null;
             if (method === 'post') {
                 ajax.data = new FormData(form);
+                if (button) {
+                    ajax.data.append(button.name, button.value);
+                }
                 ajax.type = 'post';
                 ajax.enctype = 'multipart/form-data';
                 ajax.processData = false; // tell jQuery not to process the data
                 ajax.contentType = false; // tell jQuery not to set contentType
             } else {
-                ajax.data = $form.serialize();
+                ajax.data = $form.serialize() + (button ? '&' + $.param([button]) : '');
             }
             $modalDialog.ajaxContent(ajax);
             return false;

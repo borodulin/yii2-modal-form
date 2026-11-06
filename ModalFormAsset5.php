@@ -16,6 +16,7 @@ class ModalFormAsset5 extends \yii\web\AssetBundle
     ];
 
     public $depends = [
+        'yii\web\JqueryAsset',
         'yii\bootstrap5\BootstrapPluginAsset'
     ];
 }
